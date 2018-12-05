@@ -4,6 +4,8 @@
 <title>Simulation System</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/documentation/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -24,13 +26,25 @@
 	<a class="sideBySide buttonControls" id="nextFrame" onclick='control("nextFrame");'>&#8827;</a>
 </div>
 <br>
-<ul id="navBar2">
+<ul class="topnav" id="navBar2">
 <li><a id="placeObjectsNav" class="active navBar2Li" onclick='domShow("place");'>Place Object</a></li>
 <li><a id="GraphNav" class="navBar2Li" onclick='domShow("graph");'>Graph</a></li>
 <li><a id="VariablesNav" class="navBar2Li" onclick='domShow("variables");'>Variables</a></li>
 <li><a id="TimeNav" class="navBar2Li" onclick='domShow("time");'>Time</a></li>
 <li><a id="SettingsNav" class="navBar2Li" onclick='domShow("settings");'>Settings</a></li>
+<li><a href="#" class="icon" onclick="navbarResponsive()">
+	<i class="fa fa-bars"></i></a></li>
 </ul>
+<script>
+function navbarResponsive() {
+    var x = document.getElementById("navBar2");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
 <div id="placeObjectsDiv">
 	<h2 id="currentCommand">Current Command:</h2>
 	<hr>
