@@ -58,7 +58,7 @@ function generateDomElement(id,name,color,type){
 function save(id){
   objectsGraphed[id][2] = document.getElementById('name').value;
   objectsGraphed[id][0] = parseInt(document.getElementById('parNum').value)-1;
-  objectsGraphed[id][1] = document.getElementById('toGraph').value; 
+  objectsGraphed[id][1] = document.getElementById('toGraph').value;
   objectsGraphed[id][3] = document.getElementById('colorpicker').value;
   objectsGraphed[id][4] = parseFloat(document.getElementById('graphYShift').value);
   document.getElementById("var"+id+"name").getElementsByClassName("varNameState")[0].getElementsByClassName("varName")[0].innerHTML = objectsGraphed[id][2];
@@ -291,7 +291,7 @@ function saveSettings(){
 	scene.forceTypes[0].gravity[1] = parseFloat(gravitySetting[1]);
 	scene.forceTypes[1].beta = linearDampingSetting;
 	console.log(linearDampingSetting);
-	scene.integrationType = integrationType;
+	scene.integrationMethod = integrationType;
 	scene.minConvergenceImplicit = convergenceRate;
 	scene.maxLoopsForImplicit = maxLoops;
 }
@@ -399,7 +399,7 @@ var simulationY = document.getElementById("simulationY");
 var simulationScale = document.getElementById("simulationScale");
 
 rangeX.oninput = function() {
-    graphCanvas.shiftX = parseFloat(this.value);
+    graphCanvas.shiftX = -1*parseFloat(this.value);
     movingWithTime = false;
     graphCanvas.updateTransform();
     for(var i = 0; i < graphing.length; i++){
@@ -410,7 +410,7 @@ rangeX.oninput = function() {
 }
 
 graphScaleX.oninput = function() {
-    graphCanvas.scaleX = parseFloat(this.value);
+    graphCanvas.scaleX = 1/parseFloat(this.value);
     movingWithTime = false;
     graphCanvas.updateTransform();
     for(var i = 0; i < graphing.length; i++){
@@ -421,7 +421,7 @@ graphScaleX.oninput = function() {
 }
 
 rangeY.oninput = function() {
-    graphCanvas.shiftY = parseFloat(this.value)*-1;
+    graphCanvas.shiftY = -1*parseFloat(this.value)*-1;
     //graphCanvas.updateTransformY2();
     graphCanvas.updateTransform();
     for(var i = 0; i < graphing.length; i++){
@@ -432,7 +432,7 @@ rangeY.oninput = function() {
 }
 
 graphScaleY.oninput = function() {
-    graphCanvas.scaleY = parseFloat(this.value);
+    graphCanvas.scaleY = 1/parseFloat(this.value);
     //graphCanvas.updateTransformY2();
     graphCanvas.updateTransform();
     for(var i = 0; i < graphing.length; i++){
@@ -447,7 +447,7 @@ timeSpeed.oninput = function() {
 }
 
 simulationX.oninput = function() {
-	var shiftX = parseFloat(this.value);
+	var shiftX = -1*parseFloat(this.value);
 	mainCanvas.currentPos[0] = -10*mainCanvas.currentPos[4]+shiftX;
 	mainCanvas.currentPos[2] = 10*mainCanvas.currentPos[4]+shiftX;
 	mainCanvas.currentPos[3] = shiftX;
@@ -457,7 +457,7 @@ simulationX.oninput = function() {
 	mainCanvas.updateTransform();
 }
 simulationY.oninput = function() {
-	var shiftY = parseFloat(this.value);
+	var shiftY = -1*parseFloat(this.value);
 	mainCanvas.currentPos[1] = 7.5*mainCanvas.currentPos[4]+shiftY;
 	mainCanvas.currentPos[5] = shiftY;
 	mainCanvas.x1 = mainCanvas.currentPos[0];
@@ -466,7 +466,7 @@ simulationY.oninput = function() {
 	mainCanvas.updateTransform();
 }
 simulationScale.oninput = function() {
-	var scaleX = parseFloat(this.value);
+	var scaleX = 1/parseFloat(this.value);
 	mainCanvas.currentPos[0] = -10*scaleX+mainCanvas.currentPos[3];
 	mainCanvas.currentPos[2] = 10*scaleX+mainCanvas.currentPos[3];
 	mainCanvas.currentPos[4] = scaleX;
@@ -513,4 +513,3 @@ rangeShifters(0.1,9999,"minScaleX","maxScaleX","scaleX");
 rangeShifters(-9999,9999,"minSimulationX","maxSimulationX","simulationX");
 rangeShifters(-9999,9999,"minSimulationY","maxSimulationY","simulationY");
 rangeShifters(0.1,9999,"minSimulationScale","maxSimulationScale","simulationScale");
-
