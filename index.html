@@ -387,7 +387,7 @@ function navbarResponsive() {
 
 </div>
 
-<div id="GraphDiv" style="display:none;">
+<div id="GraphDiv">
 	<canvas id="graphCanvas" width="450" height="300" style="margin-top:-5px;"></canvas>
     <div class="row">
       	<div class="col-10 sideBySide">
@@ -395,14 +395,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -412,14 +412,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleY" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleY" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -429,14 +429,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -446,14 +446,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleX" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleX" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -552,14 +552,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -569,14 +569,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -586,14 +586,14 @@ function navbarResponsive() {
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationScale" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationScale" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="simulationScale">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationScale" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationScale" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -640,19 +640,20 @@ function navbarResponsive() {
   </div>
 </div>
 </div>
-<h1 id="orientation-error">Please use this application only in landscape mode (change the settings i the phone to allow for screen rotation and use the application in landscape)</h1>
+<h1 id="orientation-error">Please use this application only in landscape mode (change the settings in the phone to allow for screen rotation and use the application in landscape then reload the page)</h1>
 </body>
 
 <script>
-function resizeCanvasToDisplaySize(canvas) {
-   // look up the size the canvas is being displayed
-   const width = canvas.clientWidth;
-   const height = canvas.clientHeight;
-
+function resizeCanvasToDisplaySize(canv) {
+   // look up the size the canv is being displayed
+   var width = canv.clientWidth;
+   var height = canv.clientHeight;
+	 console.log(width);
+	 console.log(height);
    // If it's resolution does not match change it
-   if (canvas.width !== width || canvas.height !== height) {
-     canvas.width = width;
-     canvas.height = height;
+   if (canv.width !== width || canv.height !== height) {
+     canv.width = width;
+     canv.height = height;
      return true;
    }
 
@@ -660,6 +661,8 @@ function resizeCanvasToDisplaySize(canvas) {
 }
 
 resizeCanvasToDisplaySize(document.getElementById("canvas"));
+resizeCanvasToDisplaySize(document.getElementById("graphCanvas"));
+document.getElementById("GraphDiv").style = "display:none;";
 </script>
 <script src="js/math.min.js"></script>
 <script src="js/dom.js"></script>

@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
 ctx.textBaseline = 'middle';
-var mainCanvas = new simulationCanvas(-10,7.5,10,canvas,ctx,1,"black");
+var mainCanvas = new simulationCanvas(-10,(canvas.height/canvas.width)*10,10,canvas,ctx,1,"black");
 
 var graphCanvasDom = document.getElementById("graphCanvas");
 var graphCtx = graphCanvasDom.getContext("2d");

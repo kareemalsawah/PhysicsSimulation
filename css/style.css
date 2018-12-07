@@ -48,32 +48,33 @@ body{
     text-decoration: none;
 }
 
-@media screen and (max-width: 1000px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-
-	#placementOptions{
-		margin-left:2vw;
-		width:35%;
-	}
+.buttonControls{
+    margin-left:3.3vw;
+    background-color:#4CAF50;
+    padding:0.8vw;
+    padding-left:3vw;
+    padding-right:3vw;
+    color:white;
 }
 
-@media screen and (max-width: 1000px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
+@media screen and (max-width: 1200px) {
+	#placementOptions{
+		margin-left:4vw;
+		width:30%;
+	}
+	#navBar2{
+		font-size:0.8vw;
+	}
 
+	.buttonControls{
+		padding-left:2vw;
+    padding-right:2vw;
+
+	}
+	#canvasDiv{
+		width:60vw;
+		height:90vh;
+	}
 }
 
 .topnav .icon {
@@ -202,41 +203,35 @@ label {
     margin-bottom:30px;
 }
 
-.buttonControls{
-    margin-left:2.7vw;
-    background-color:#4CAF50;
-    padding:0.8vw;
-    padding-left:3vw;
-    padding-right:3vw;
-    color:white;
-}
+
 
 
 .slider {
     -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
+    width: 15vw;
+    height: 1vw;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+		margin-left: -0.8vw;
 }
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 1.3vw;
+    height: 1.3vw;
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 1.3vw;
+    height: 1.3vw;
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
@@ -357,11 +352,20 @@ label {
     font-size:25px;
 }
 
-#orientation-error { display: none; }
+#orientation-error { display: none; color:red; }
     @media only screen and (orientation:portrait){
         #wrapper { display:none; }
         #orientation-error { display:block; }
     }
-    @media only screen and (orientation:landscape){
-        #orientation-error { display:none; }
-    }
+
+		@media only screen and (max-width:1200px){
+			.slider{
+				width:10vw;
+				margin-left:1.5vw;
+			}
+		}
+
+.rangeDefine{
+	width:1.2vw;
+	font-size:0.8vw;
+}

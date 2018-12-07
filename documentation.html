@@ -75,7 +75,8 @@
                                     <li><a href="#line4_1_2">Explicit Euler</a></li>
                                     <li><a href="#line4_1_3">Symplectic Euler</a></li>
                                     <li><a href="#line4_1_4">Implicit Euler</a></li>
-                                    <li><a href="#line4_1_5">Explicit Implicit</a></li>
+                                    <li><a href="#line4_1_5">Implicit Explicit</a></li>
+                                    <li><a href="#line4_1_6">Implicit Symplectic</a></li>
                                     </ul>
                                 </li>
                                     <li><a href="#line4_2">Forces</a>
@@ -340,10 +341,10 @@
                         </div>
 
                         <h4 id="line4_1">Time Integration</h4>
-                        There are four methods available to use in the simulation. Explicit Euler, Symplectic Euler, Implicit Euler, and a combination of Explicit and Implicit. All these methods work by using discrete units for time = dt instead of using continous time.
+                        There are five methods available to use in the simulation. Explicit Euler, Symplectic Euler, Implicit Euler, a combination of Implicit and Explicit, and a combination of Implicit and Symplectic. All these methods work by using discrete units for time = dt instead of using continous time.
                         <hr>
 
-                        <div class="tabbebDocumentation">
+                        <div class="tabbedDocumentation" style="margin-bottom:100px;">
                         <h4 id="line4_1_1">Math notation:</h4>
                         q is the position of the particle, and it is a 2 dimensional vector.
                         <br>
@@ -395,12 +396,17 @@
                         Detailed derivations are excluded but can be found easily either in the <a href="#line5">references</a> or online.
                         <hr>
 
-                        <h4 id="line4_1_5">Explicit Implicit Combination</h4>
+                        <h4 id="line4_1_5">Implicit Explicit Combination</h4>
                         Thiis method has a very simple concept. Since explicit euler generally increases the total energy and implicit euler generally reduces it, the simulator will calculate the energy at the beginning of the simulation; at each time step the simulator will use either explicit or implicit euler depending on the system's current energy. If it is higher than the initial energy, the simulator will use implicit euler and vice versa. This means that we need to implement functions to calculate the net energy in a system = potential energy + kinetic energy. As well as functions that reduce the calculate system's initial energy to account for damping.
+
+                        <hr>
+
+                        <h4 id="line4_1_6">Implicit Symplectic Combination</h4>
+                        Similar to the previous method, this method combines Implicit and Symplectic Euler in the same way. During testing, this method was the most reliable and stable of all the methods, so it is recommended to use this method.
                         </div>
 
                         <h4 id="line4_2">Forces</h4>
-                        <div class="tabbebDocumentation">
+                        <div class="tabbedDocumentation">
                         Each force object implements a function that calculates energy, gradient of the energy, and hessian of the energy.
                         <h4 id="line4_2_1">Spring Force</h4>
                         The spring force has two components the actual spring force and the damping force. Each will be shown seperately. Firstly, the spring force. It is a force that is proportional to the displacement from the equilibrium position (Hooke's law) and is always directed towards the equilibirum.
@@ -513,7 +519,7 @@
     padding-right:100px;
 }
 
-.tabbebDocumentation{
+.tabbedDocumentation{
     margin-left:3%;
 }
 </style>
