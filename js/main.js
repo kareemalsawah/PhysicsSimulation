@@ -137,94 +137,106 @@ function loop(){
 				var rect = canvas.getBoundingClientRect();
 				var mouseX = evt.clientX - rect.left;
 				var mouseY = evt.clientY - rect.top;
-				var realCoord = mainCanvas.canToRealCoord(mouseX,mouseY);
-				if(placing=="particle"){
-					var fixedCopy = [0,0];
-					fixedCopy[0] = toAddParticle[4][0];
-					fixedCopy[1] = toAddParticle[4][1];
-					scene.addParticle(realCoord[0],realCoord[1],parseFloat(toAddParticle[1][0]),parseFloat(toAddParticle[1][1]),fixedCopy,parseFloat(toAddParticle[0]),parseFloat(toAddParticle[2]),toAddParticle[3]);
-					scene.startEnergy = scene.computeEnergy();
-					placing = "0";
-					scene.stepScene(dtGeneral);
-					loop();
-					canvas.removeEventListener("mouseover",function(){});
-					canvas.removeEventListener("mouseout",function(){});
-					canvas.removeEventListener("click",function(){});
-					document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
-				}else if(placing=="spring"){
-					if(springElement1==-1){
-						for(var i = 0; i < scene.numParticles; i++){
-							if(dist(realCoord[0],realCoord[1],scene.particles[i].pos[0],scene.particles[i].pos[1])<scene.particles[i].radius){
-								springElement1 = i;
-								i = scene.numParticles;
-							}
-						}
-						if(springElement1==-1){
-						}else{
-							document.getElementById("currentCommand").innerHTML = "Current Command: Select second object";
-						}
-					}else{
-						for(var i = 0; i < scene.numParticles; i++){
-							if(dist(realCoord[0],realCoord[1],scene.particles[i].pos[0],scene.particles[i].pos[1])<scene.particles[i].radius){
-								if(springElement1!=i){
-									springElement2 = i;
-									i = scene.numParticles;
-								}
-							}
-						}
-
-						if(springElement2==-1){
-						}else{
-							scene.addEdge(springElement1,springElement2,toAddSpring[3],toAddSpring[4]);
-							if(support){
-								var supportL = dist(scene.particles[springElement1].pos[0],scene.particles[springElement1].pos[1],scene.particles[springElement2].pos[0],scene.particles[springElement2].pos[1]);
-								scene.addSpringForce(scene.numEdges-1,toAddSpring[0],supportL,toAddSpring[2]);
-								support = false;
-							}else{
-								scene.addSpringForce(scene.numEdges-1,toAddSpring[0],toAddSpring[1],toAddSpring[2]);
-							}
-							springElement1 = -1;
-							springElement2 = -1;
-							scene.startEnergy = scene.computeEnergy();
-							placing = "0";
-							loop();
-							canvas.removeEventListener("mouseover",function(){});
-							canvas.removeEventListener("mouseout",function(){});
-							canvas.removeEventListener("click",function(){});
-							document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
-						}
-					}
-				}else if(placing=="rope"||placing=="simpleRope"){
-					if(ropeElement==-1){
-						ropePos[0] = realCoord;
-						ropeElement = 1;
-					}else{
-						if(realCoord[0]!=ropePos[0][0]||realCoord[1]!=ropePos[0][1]){
-							ropePos[1] = realCoord;
-							ropeElement = -1;
-
-
-							if(placing=="rope"){
-								placing = "0";
-								place("rope");
-							}else if(placing=="simpleRope"){
-								placing = "0";
-								place("simpleRope");
-							}
-							scene.startEnergy = scene.computeEnergy();
-							loop();
-							canvas.removeEventListener("mouseover",function(){});
-							canvas.removeEventListener("mouseout",function(){});
-							canvas.removeEventListener("click",function(){});
-							document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
-						}
-					}
-				}
+				touchClick(mouseX,mouseY);
 			}
+		});
+		canvas.addEventListener("touchstart",function(evt){
+			var rect = canvas.getBoundingClientRect();
+			var touchX = evt.touches[0].clientX - rect.left;
+			var touchY = evt.touches[0].clientY - rect.top;
+			touchClick(touchX,touchY);
 		});
 	}
 }
 
+function touchClick(mouseX,mouseY){
+	var realCoord = mainCanvas.canToRealCoord(mouseX,mouseY);
+	if(placing=="particle"){
+		var fixedCopy = [0,0];
+		fixedCopy[0] = toAddParticle[4][0];
+		fixedCopy[1] = toAddParticle[4][1];
+		scene.addParticle(realCoord[0],realCoord[1],parseFloat(toAddParticle[1][0]),parseFloat(toAddParticle[1][1]),fixedCopy,parseFloat(toAddParticle[0]),parseFloat(toAddParticle[2]),toAddParticle[3]);
+		scene.startEnergy = scene.computeEnergy();
+		placing = "0";
+		scene.stepScene(dtGeneral);
+		loop();
+		canvas.removeEventListener("mouseover",function(){});
+		canvas.removeEventListener("mouseout",function(){});
+		canvas.removeEventListener("click",function(){});
+		canvas.removeEventListener("touchstart",function(){});
+		document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
+	}else if(placing=="spring"){
+		if(springElement1==-1){
+			for(var i = 0; i < scene.numParticles; i++){
+				if(dist(realCoord[0],realCoord[1],scene.particles[i].pos[0],scene.particles[i].pos[1])<scene.particles[i].radius){
+					springElement1 = i;
+					i = scene.numParticles;
+				}
+			}
+			if(springElement1==-1){
+			}else{
+				document.getElementById("currentCommand").innerHTML = "Current Command: Select second object";
+			}
+		}else{
+			for(var i = 0; i < scene.numParticles; i++){
+				if(dist(realCoord[0],realCoord[1],scene.particles[i].pos[0],scene.particles[i].pos[1])<scene.particles[i].radius){
+					if(springElement1!=i){
+						springElement2 = i;
+						i = scene.numParticles;
+					}
+				}
+			}
+
+			if(springElement2==-1){
+			}else{
+				scene.addEdge(springElement1,springElement2,toAddSpring[3],toAddSpring[4]);
+				if(support){
+					var supportL = dist(scene.particles[springElement1].pos[0],scene.particles[springElement1].pos[1],scene.particles[springElement2].pos[0],scene.particles[springElement2].pos[1]);
+					scene.addSpringForce(scene.numEdges-1,toAddSpring[0],supportL,toAddSpring[2]);
+					support = false;
+				}else{
+					scene.addSpringForce(scene.numEdges-1,toAddSpring[0],toAddSpring[1],toAddSpring[2]);
+				}
+				springElement1 = -1;
+				springElement2 = -1;
+				scene.startEnergy = scene.computeEnergy();
+				placing = "0";
+				loop();
+				canvas.removeEventListener("mouseover",function(){});
+				canvas.removeEventListener("mouseout",function(){});
+				canvas.removeEventListener("click",function(){});
+				canvas.removeEventListener("touchstart",function(){});
+				document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
+			}
+		}
+	}else if(placing=="rope"||placing=="simpleRope"){
+		if(ropeElement==-1){
+			ropePos[0] = realCoord;
+			ropeElement = 1;
+		}else{
+			if(realCoord[0]!=ropePos[0][0]||realCoord[1]!=ropePos[0][1]){
+				ropePos[1] = realCoord;
+				ropeElement = -1;
+
+
+				if(placing=="rope"){
+					placing = "0";
+					place("rope");
+				}else if(placing=="simpleRope"){
+					placing = "0";
+					place("simpleRope");
+				}
+				scene.startEnergy = scene.computeEnergy();
+				loop();
+				canvas.removeEventListener("mouseover",function(){});
+				canvas.removeEventListener("mouseout",function(){});
+				canvas.removeEventListener("click",function(){});
+				canvas.removeEventListener("touchstart",function(){});
+				document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
+			}
+		}
+	}
+}
 /*
 scene controls most of the simulation's physical characteristics. It stores all particles, edges, and forces.
 It updates their position as they move forward in time (Time Integration). It has 4 integration methods:
