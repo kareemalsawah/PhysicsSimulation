@@ -30,10 +30,15 @@ var ropeElement = -1; //Represents whether the position of the first particle of
 var ropePos = [[0,0],[0,0]]; //Positions of the start and end of a rope (simple and complex) that will be placed
 var support = false; //Whether a spring that will be placed is a normal spring or a support (just a spring with l0 = current distance between the two particles)
 var tempTime = 0;
+var externalLoopOn = false;
 
 //If objects graphed is not empty at initialization, add the corresponding elements to DOM
 for(var i = 0; i < objectsGraphed.length; i++){
 	document.getElementById("variables").innerHTML += generateDomElement(i,objectsGraphed[i][2],objectsGraphed[i][3]);
+}
+
+function externalLoop(){
+	
 }
 
 /*
@@ -49,7 +54,9 @@ function loop(){
 			if(scene.particles.length>0){
 				scene.stepScene(dtGeneral);
 				tempTime += dtGeneral;
-				externalLoop();
+				if(externalLoop){
+					externalLoop();
+				}
 			}
 			if(timerOn){
 				timerTime += dtGeneral;

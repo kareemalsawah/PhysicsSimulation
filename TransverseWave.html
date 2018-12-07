@@ -669,6 +669,7 @@ resizeCanvasToDisplaySize(document.getElementById("canvas"));
  Note: scene always starts with at least 2 forces simpleGravity, and linearDamping. Their settings can be changed
  from DOM from the settings section.*/
 function createObjects(){
+	externalLoopOn = true;
 	var particles = [];
 	//particles.push(new ball(-4,0,0,0,[true,false],1000,0.4,"red"));
 	//particles.push(new ball(-4,3.3,0,0,[true,true],1,0.4,"red"));
