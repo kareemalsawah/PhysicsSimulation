@@ -356,3 +356,12 @@ label {
 .nav2Titles{
     font-size:25px;
 }
+
+#orientation-error { display: none; }
+    @media only screen and (orientation:portrait){
+        #wrapper { display:none; }
+        #orientation-error { display:block; }
+    }
+    @media only screen and (orientation:landscape){
+        #orientation-error { display:none; }
+    }

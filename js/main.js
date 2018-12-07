@@ -49,7 +49,7 @@ function loop(){
 			if(scene.particles.length>0){
 				scene.stepScene(dtGeneral);
 				tempTime += dtGeneral;
-				scene.particles[0].pos = [scene.particles[0].pos[0],3*Math.sin(25*tempTime)];
+				externalLoop();
 			}
 			if(timerOn){
 				timerTime += dtGeneral;
