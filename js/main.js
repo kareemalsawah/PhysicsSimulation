@@ -303,7 +303,7 @@ function Scene(particles,edges,integrationMethod,forceTypes){
     			this.integrationMethod = "SymplecticImplicit";
     		}
 		}else if(this.integrationMethod=="SymplecticImplicit"){
-    		this.Symplectic(x,v,m,forces,dt);
+    		this.SymplecticEuler(x,v,m,forces,dt);
     		this.currentEnergy = this.computeEnergy();
     		if(this.currentEnergy>this.startEnergy){
     			this.integrationMethod = "ImplicitSymplectic";
