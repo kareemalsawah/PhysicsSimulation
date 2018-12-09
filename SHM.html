@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Simple Harmonic Motion (Spring)</title>
+<title>Simple Harmonic Motion</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/fonts/font-awesome-4.3.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
+<div id="wrapper">
 <ul id="navBar">
 <li><a href="index.html">Simulate</a></li>
-<li><a class="active" href="#">Examples</a></li>
+<li><a class="active" href="examples.html">Examples</a></li>
 <li><a href="documentation.html">Documentation</a></li>
 </ul>
 
 
 <div class="sideBySide" id="canvasDiv">
-<canvas id="canvas" width="800" height="600"></canvas>
+<canvas id="canvas"></canvas>
 </div>
 <div class="sideBySide" id="placementOptions">
 <div id="controls">
@@ -24,13 +27,25 @@
 	<a class="sideBySide buttonControls" id="nextFrame" onclick='control("nextFrame");'>&#8827;</a>
 </div>
 <br>
-<ul id="navBar2">
+<ul class="topnav" id="navBar2">
 <li><a id="placeObjectsNav" class="active navBar2Li" onclick='domShow("place");'>Place Object</a></li>
 <li><a id="GraphNav" class="navBar2Li" onclick='domShow("graph");'>Graph</a></li>
 <li><a id="VariablesNav" class="navBar2Li" onclick='domShow("variables");'>Variables</a></li>
 <li><a id="TimeNav" class="navBar2Li" onclick='domShow("time");'>Time</a></li>
 <li><a id="SettingsNav" class="navBar2Li" onclick='domShow("settings");'>Settings</a></li>
+<li><a href="#" class="icon" onclick="navbarResponsive()">
+	<i class="fa fa-bars"></i></a></li>
 </ul>
+<script>
+function navbarResponsive() {
+    var x = document.getElementById("navBar2");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
 <div id="placeObjectsDiv">
 	<h2 id="currentCommand">Current Command:</h2>
 	<hr>
@@ -372,7 +387,7 @@
 
 </div>
 
-<div id="GraphDiv" style="display:none;">
+<div id="GraphDiv">
 	<canvas id="graphCanvas" width="450" height="300" style="margin-top:-5px;"></canvas>
     <div class="row">
       	<div class="col-10 sideBySide">
@@ -380,14 +395,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -397,14 +412,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleY" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleY" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -414,14 +429,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -431,14 +446,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleX" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleX" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -537,14 +552,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -554,14 +569,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -571,14 +586,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationScale" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationScale" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="simulationScale">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationScale" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationScale" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -624,8 +639,31 @@
     <div id="toAdd"></div>
   </div>
 </div>
+</div>
+<h1 id="orientation-error">Please use this application only in landscape mode (change the settings in the phone to allow for screen rotation and use the application in landscape then reload the page)</h1>
 </body>
 
+<script>
+function resizeCanvasToDisplaySize(canv) {
+   // look up the size the canv is being displayed
+   var width = canv.clientWidth;
+   var height = canv.clientHeight;
+	 console.log(width);
+	 console.log(height);
+   // If it's resolution does not match change it
+   if (canv.width !== width || canv.height !== height) {
+     canv.width = width;
+     canv.height = height;
+     return true;
+   }
+
+   return false;
+}
+
+resizeCanvasToDisplaySize(document.getElementById("canvas"));
+resizeCanvasToDisplaySize(document.getElementById("graphCanvas"));
+document.getElementById("GraphDiv").style = "display:none;";
+</script>
 <script src="js/math.min.js"></script>
 <script src="js/dom.js"></script>
 <script src="js/helper.js"></script>
@@ -638,5 +676,8 @@
 createObjects();
 loop();
 setSavedValues();
+
+
+
 </script>
 </html>

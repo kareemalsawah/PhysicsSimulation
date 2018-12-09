@@ -4,18 +4,21 @@
 <title>Forced Oscillations</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/fonts/font-awesome-4.3.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
+<div id="wrapper">
 <ul id="navBar">
 <li><a href="index.html">Simulate</a></li>
-<li><a class="active" href="#">Examples</a></li>
+<li><a class="active" href="examples.html">Examples</a></li>
 <li><a href="documentation.html">Documentation</a></li>
 </ul>
 
 
 <div class="sideBySide" id="canvasDiv">
-<canvas id="canvas" width="800" height="600"></canvas>
+<canvas id="canvas"></canvas>
 </div>
 <div class="sideBySide" id="placementOptions">
 <div id="controls">
@@ -24,13 +27,25 @@
 	<a class="sideBySide buttonControls" id="nextFrame" onclick='control("nextFrame");'>&#8827;</a>
 </div>
 <br>
-<ul id="navBar2">
+<ul class="topnav" id="navBar2">
 <li><a id="placeObjectsNav" class="active navBar2Li" onclick='domShow("place");'>Place Object</a></li>
 <li><a id="GraphNav" class="navBar2Li" onclick='domShow("graph");'>Graph</a></li>
 <li><a id="VariablesNav" class="navBar2Li" onclick='domShow("variables");'>Variables</a></li>
 <li><a id="TimeNav" class="navBar2Li" onclick='domShow("time");'>Time</a></li>
 <li><a id="SettingsNav" class="navBar2Li" onclick='domShow("settings");'>Settings</a></li>
+<li><a href="#" class="icon" onclick="navbarResponsive()">
+	<i class="fa fa-bars"></i></a></li>
 </ul>
+<script>
+function navbarResponsive() {
+    var x = document.getElementById("navBar2");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
 <div id="placeObjectsDiv">
 	<h2 id="currentCommand">Current Command:</h2>
 	<hr>
@@ -372,7 +387,7 @@
 
 </div>
 
-<div id="GraphDiv" style="display:none;">
+<div id="GraphDiv">
 	<canvas id="graphCanvas" width="450" height="300" style="margin-top:-5px;"></canvas>
     <div class="row">
       	<div class="col-10 sideBySide">
@@ -380,14 +395,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -397,14 +412,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleY" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleY" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -414,14 +429,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minGraphX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minGraphX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="rangeX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxGraphX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxGraphX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -431,14 +446,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minScaleX" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minScaleX" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="scaleX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxScaleX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxScaleX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -485,24 +500,24 @@
 
 </div>
 <div id="SettingsDiv" style="display:none;overflow-y: scroll;height:450px;">
-<h2 class="nav2Titles">Special Settings:</h2>
-	<div class="col-25" style="width:10%">
-        	<label>w:</label>
-      	</div>
-		<div class="rangeInput" style="margin-bottom:80px;">
-	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSpecial" value="1" size="2">
-	      	</div>
-	      	<div class="col-20 slidecontainer sideBySide">
-				 	<input type="range" min="1" max="5" value="2.218" step = "0.1" class="slider" id="special">
-			</div>
-
-	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSpecial" value="5" size="2">
-	      	</div>
-      	</div>
-      	<br>
 	<h2 class="nav2Titles">Settings:</h2>
+	<h2 class="nav2Titles">Special Settings:</h2>
+		<div class="col-25" style="width:10%">
+	        	<label>w:</label>
+	      	</div>
+			<div class="rangeInput" style="margin-bottom:80px;">
+		      	<div class="col-30 sideBySide">
+		        	<input type="text" id="minSpecial" value="1" size="2">
+		      	</div>
+		      	<div class="col-20 slidecontainer sideBySide">
+					 	<input type="range" min="1" max="5" value="2.218" step = "0.1" class="slider" id="special">
+				</div>
+
+		      	<div class="col-30 sideBySide">
+		        	<input type="text" id="maxSpecial" value="5" size="2">
+		      	</div>
+	      	</div>
+	      	<br>
 	<div class="row">
 		<div class="col-25">
         	<label>Gravity:</label>
@@ -554,14 +569,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationX" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationX" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationX">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationX" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationX" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -571,14 +586,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationY" value="-10" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationY" value="-10" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="-10" max="10" value="0" step = "0.1" class="slider" id="simulationY">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationY" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationY" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -588,14 +603,14 @@
       	</div>
       	<div class="rangeInput">
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="minSimulationScale" value="0.1" size="2">
+	        	<input type="text" class="rangeDefine" id="minSimulationScale" value="0.1" size="2">
 	      	</div>
 	      	<div class="col-20 slidecontainer sideBySide">
 				 	<input type="range" min="0.1" max="10" value="1" step = "0.1" class="slider" id="simulationScale">
 			</div>
 
 	      	<div class="col-30 sideBySide">
-	        	<input type="text" id="maxSimulationScale" value="10" size="2">
+	        	<input type="text" class="rangeDefine" id="maxSimulationScale" value="10" size="2">
 	      	</div>
       	</div>
     </div>
@@ -641,74 +656,43 @@
     <div id="toAdd"></div>
   </div>
 </div>
+</div>
+<h1 id="orientation-error">Please use this application only in landscape mode (change the settings in the phone to allow for screen rotation and use the application in landscape then reload the page)</h1>
 </body>
 
+<script>
+function resizeCanvasToDisplaySize(canv) {
+   // look up the size the canv is being displayed
+   var width = canv.clientWidth;
+   var height = canv.clientHeight;
+	 console.log(width);
+	 console.log(height);
+   // If it's resolution does not match change it
+   if (canv.width !== width || canv.height !== height) {
+     canv.width = width;
+     canv.height = height;
+     return true;
+   }
+
+   return false;
+}
+
+resizeCanvasToDisplaySize(document.getElementById("canvas"));
+resizeCanvasToDisplaySize(document.getElementById("graphCanvas"));
+document.getElementById("GraphDiv").style = "display:none;";
+</script>
 <script src="js/math.min.js"></script>
 <script src="js/dom.js"></script>
 <script src="js/helper.js"></script>
 <script src="js/forces.js"></script>
 <script src="js/objects.js"></script>
 <script src="js/main.js"></script>
+<script src="js/examples/forcedOscillations.js"></script>
 <script>
-
-/*Initalize particles,edges,forces, and scene.
- Note: scene always starts with at least 2 forces simpleGravity, and linearDamping. Their settings can be changed
- from DOM from the settings section.*/
-function createObjects(){
-	var particles = [];
-	var w = 2.218;
-	var mBig = 1000000;
-	var kBig = mBig*w*w/2;
-	var rad = 1;
-	var vStart = rad*w;
-	particles.push(new ball(2,0,0,0,[false,true],1,0.4,"red"));
-	particles.push(new ball(-2,0,0,0,[false,true],1,0.4,"red"));
-	particles.push(new ball(-6,0,0,vStart,[false,false],mBig/2,0.4,"red"));
-	particles.push(new ball(-7,0,0,0,[true,true],mBig/2,0.4,"red"));
-	var edges = [];
-	edges.push(new edge(0,1,0.2,"green"));
-	edges.push(new edge(1,2,0.2,"green"));
-	edges.push(new edge(2,3,0.2,"green"));
-	var gravityVector = [];
-	gravityVector.push(0.0);
-	gravityVector.push(0.0);
-	var simpleGravityForce = new SimpleGravity(gravityVector);
-	var linearDampingForce = new DragDampingForce(0.0);
-	var springForce = new SpringForce(0,5,6,0.4);
-	var springForce2 = new SpringForce(1,300,4,0.0);
-	var springForce3 = new SpringForce(2,3000*mBig,rad,0.0);
-	forceTypes = [];
-	forceTypes.push(simpleGravityForce);
-	forceTypes.push(linearDampingForce);
-	forceTypes.push(springForce);
-	forceTypes.push(springForce2);
-	forceTypes.push(springForce3);
-	scene = new Scene(particles,edges,"ImplicitExplicit",forceTypes);
-
-	newObject = [0,"x","P1_X","#ff0000",-2.9];
-	objectsGraphed.push(newObject);
-	graphing.push(true);
-	var index = objectsGraphed.length-1;
-	document.getElementById("variables").innerHTML += generateDomElement(index,objectsGraphed[index][2],objectsGraphed[index][3]);
-	document.getElementById("hidden0").innerHTML = "Visible";
-}
 
 createObjects();
 loop();
 setSavedValues();
 
-
-rangeShifters(1,5,"minSpecial","maxSpecial","special");
-document.getElementById("special").oninput = function(){
-	var w = parseFloat(this.value);
-	var rad = 1;
-	var vStart = rad*w;
-	var currentV = scene.particles[2].velocity;
-	var currentSpeed = vecNorm(currentV);
-	var multiplier = w/currentSpeed;
-	scene.particles[2].velocity[0] *= multiplier;
-	scene.particles[2].velocity[1] *= multiplier;
-	scene.startEnergy = scene.computeEnergy();
-}
 </script>
 </html>
