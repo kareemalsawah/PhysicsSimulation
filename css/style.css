@@ -239,10 +239,10 @@ label {
 }
 
 .msgBox {
-    display: none; /* Hidden by default */
+		display:none; /*Hidden by default*/
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 2%; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -254,11 +254,13 @@ label {
 
 /* Modal Content */
 .msgBox-content {
+	overflow: auto;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+		height:80%;
 }
 
 .msgBoxText{
@@ -278,7 +280,8 @@ label {
 }
 
 .msgBoxTitles{
-    width:15%;
+    width:10%;
+		margin-bottom:2%;
 }
 /* The Close Button */
 .close {
@@ -300,22 +303,24 @@ label {
     margin-top:5px;
 }
 
-.variablesElemsBtn{
+#variablesElemsBtn{
     padding:5px;
     margin-right:5px;
+		margin-top:1vw;
+		font-size:1.5vw;
 }
 
 .colorBlock{
-    width:20px;
-    height:20px;
-    margin-top:10px;
+    width:1vw;
+    height:1vw;
+    margin-top:1.5vw;
 }
 
 .varNameState{
     width:32%;
 }
 .varName{
-    font-size:25px;
+    font-size:2vw;
     margin-right:5px;
     margin-top:3px;
 }
@@ -331,6 +336,7 @@ label {
     border-color:black;
     border-width:1px;
     border-radius:3px;
+		overflow:auto;
 }
 
 .btn-success{
@@ -338,16 +344,17 @@ label {
 }
 
 
-.stopwatchBtn{
-    margin-left:5%;
-    width:15%;
+#stopwatchBtn{
+    margin-left:0.5vw;
+    width:3vw;
+		font-size:1.3vw;
 }
 .stopwatchControls{
-    margin-left:13%;
+	margin-top:3vw;
+	margin-bottom:-2vw;
 }
 #timer{
-    text-align:center;
-    font-size:35px;
+    font-size:4vw;
 }
 .nav2Titles{
     font-size:2vw;

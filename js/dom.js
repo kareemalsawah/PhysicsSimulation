@@ -47,9 +47,9 @@ function generateDomElement(id,name,color,type){
 	var p2 = 'name"><div class="sideBySide varNameState"><a class="sideBySide varName">';
 	var p3 = '</a><a class="sideBySide state" id="hidden';
 	var p4 = '">Hidden</a></div><a class="sideBySide variablesElems colorBlock" style="background-color:';
-	var p5 = '"></a><a class="sideBySide variablesElemsBtn btn btn-primary" onclick="switchGraphing(';
-	var p6 = ');">Switch Visibility</a><a class="sideBySide variablesElemsBtn btn btn-primary" onclick="showOptions(';
-	var p7 = ');">Edit</a><a class="sideBySide variablesElemsBtn btn btn-danger" onclick="deleteVar(';
+	var p5 = '"></a><a class="sideBySide btn btn-primary" id="variablesElemsBtn" onclick="switchGraphing(';
+	var p6 = ');">Switch Visibility</a><a class="sideBySide btn btn-primary" id="variablesElemsBtn" onclick="showOptions(';
+	var p7 = ');">Edit</a><a class="sideBySide btn btn-danger" id="variablesElemsBtn" onclick="deleteVar(';
 	var p8 = ');">Delete</a><br></div>';
 	var answer = p1+id+p2+name+p3+id+p4+color+p5+id+p6+id+p7+id+p8;
 	return answer;
@@ -367,6 +367,7 @@ function load(data){
 
 var drawingCursor = false;
 var drawingPointPos = [0,0];
+console.log(graphCanvas);
 graphCanvas.addEventListener("mousemove",function(evt){
 	if(drawingCursor){
 	var rect = graphCanvasDom.getBoundingClientRect();

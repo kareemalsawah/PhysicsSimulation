@@ -14,7 +14,6 @@
 </ul>
 
 <div class="examplesList">
-	<div class="row">
 		<a href="circularMotion.html">
 			<div class="scene sideBySide">
 				<div class="image">
@@ -86,8 +85,25 @@
 				<h3 class="title">Transverse Wave</h3>
 			</div>
 		</a>
-
-	</div>
+</div>
+<h3>Custom Examples:</h3>
+<div class="examplesList">
+	<a href="wavesPlayground_2.html">
+		<div class="scene sideBySide">
+			<div class="image">
+				<img src="images/beats.jpg"></img>
+			</div>
+			<h3 class="title">1D Waves</h3>
+		</div>
+	</a>
+	<a href="2dWaves.html">
+		<div class="scene sideBySide">
+			<div class="image">
+				<img src="images/waveDiffraction.jpg"></img>
+			</div>
+			<h3 class="title">2D Waves</h3>
+		</div>
+	</a>
 </div>
 </body>
 <script>
@@ -101,9 +117,9 @@ margin-top:20px;
 	text-align:center;
 	background-color:#ccc;
 	margin:40px;
-	margin-right:50px;
+	margin-left:3vw;
 	border-radius:5px;
-	width:340px;
+	width:80%;
 	font-size:15px;
 }
 .right{
@@ -117,5 +133,22 @@ padding:20px;
 border-radius:10px;
 }
 a { color: inherit; }
+.examplesList{
+	  display: grid;
+	  grid-template-columns: auto auto auto;
+	  grid-gap: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .examplesList {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .examplesList {
+    grid-template-columns: auto;
+  }
+}
 </style>
 </html>

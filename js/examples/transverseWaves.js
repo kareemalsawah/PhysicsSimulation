@@ -17,11 +17,23 @@ function createObjects(){
 
 	scene = new Scene(particles,edges,"ImplicitSymplectic",forceTypes);
 
-	var ropeTest = new simpleRope([-6,0],[8,0],[0,0],[0,0],[[true,false],[true,false]],0.01,0.1,"red","green",1000,20,0.0,[true,false]);
+	var ropeTest = new simpleRope([-9,0],[9,0],[0,0],[0,0],[[true,false],[true,true]],0.01,0.1,"red","green",1000,20,0.0,[true,false]);
 	scene.forceTypes[2].k = 1000000;
+	scene.particles[0].mass = 100000;
 	scene.startEnergy = scene.computeEnergy();
+	scene.integrationMethod = "ImplicitEuler";
 }
 
+var particleMove = true;
 function externalLoop(){
-	scene.particles[0].pos = [scene.particles[0].pos[0],3*Math.sin(20*tempTime)];
+	if(particleMove){
+		scene.particles[0].pos = [scene.particles[0].pos[0],4*Math.sin(40*tempTime)];
+	}else{
+		scene.particles[0].fixed = [true,true];
+	}
+	console.log(scene.integrationMethod);
+}
+
+function setEnergy(){
+	scene.startEnergy = 1000;
 }

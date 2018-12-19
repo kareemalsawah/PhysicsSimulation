@@ -38,7 +38,7 @@ for(var i = 0; i < objectsGraphed.length; i++){
 }
 
 function externalLoop(){
-	
+
 }
 
 /*
@@ -291,6 +291,8 @@ function Scene(particles,edges,integrationMethod,forceTypes){
     		this.SymplecticEuler(x,v,m,forces,dt);
 		}else if(this.integrationMethod=="ImplicitEuler"){
 			this.ImplicitEuler(x,v,m,forces,dt);
+		}else if(this.integrationMethod=="LinearizedImplicit"){
+			this.LinearizedImplicit(x,v,m,forces,dt);
 		}else if(this.integrationMethod=="ImplicitExplicit"){
 			this.ImplicitEuler(x,v,m,forces,dt);
     		this.currentEnergy = this.computeEnergy();
@@ -420,6 +422,67 @@ function Scene(particles,edges,integrationMethod,forceTypes){
         	}
 		}
 	}
+
+	this.LinearizedImplicit = function(x,v,m,forces,dt){
+		var currentX = x;
+		var currentV = v;
+		var M = IdMatrix(x.length);
+		for(var i = 0; i < x.length; i++){
+			M[i][i] = m[i];
+		}
+		var dfdq = scalarMat(0,x.length,x.length);
+		var dfdv = scalarMat(0,x.length,x.length);
+		dfdq = this.addHessX(dfdq,addVecs(x,multiplyVecs(dt,currentV)),currentV,m);
+		dfdv = this.addHessV(dfdv,addVecs(x,multiplyVecs(dt,currentV)),currentV,m);
+		dfdq = multiplyMatrices(scalarMat(-1,x.length,x.length),dfdq);
+		dfdv = multiplyMatrices(scalarMat(-1,x.length,x.length),dfdv);
+		forces = this.calculateForces(addVecs(x,multiplyVecs(dt,currentV)),currentV,m);
+		var toInvert = addMatrices(multiplyMatrices(scalarMat(dt*dt,x.length,x.length),dfdq),multiplyMatrices(scalarMat(dt,x.length,x.length),dfdv));
+		toInvert = addMatrices(M,multiplyMatrices(scalarMat(-1,x.length,x.length),toInvert));
+		for(var i = 0; i < this.numParticles/2; i++){
+			if(scene.particles[i].fixed[0]){
+				forces[2*i] = 0;
+				for(var j = 0; j < toInvert[2*i].length; j++){
+					toInvert[2*i][j] = 0;
+				}
+				var tempMat = transposeMat(toInvert);
+				for(var j = 0; j < tempMat[2*i].length; j++){
+					tempMat[2*i][j] = 0;
+				}
+				toInvert = transposeMat(tempMat);
+				toInvert[2*i][2*i] = 1;
+			}
+			if(scene.particles[i].fixed[1]){
+				forces[2*i+1] = 0;
+				for(var j = 0; j < toInvert[2*i+1].length; j++){
+					toInvert[2*i+1][j] = 0;
+				}
+				var tempMat = transposeMat(toInvert);
+				for(var j = 0; j < tempMat[2*i+1].length; j++){
+					tempMat[2*i+1][j] = 0;
+				}
+				toInvert = transposeMat(tempMat);
+				toInvert[2*i+1][2*i+1] = 1;
+			}
+		}
+		var rightSide = multiplyMatrices(M,vecToMat(addVecs(currentV,multiplyVecs(-1,v))));
+		rightSide = addMatrices(vecToMat(multiplyVecs(-1,matToVec(rightSide))),vecToMat(multiplyVecs(dt,forces)));
+		var dv = multiplyMatrices(transposeMat(rightSide),math.inv(toInvert))[0];
+		currentV = addVecs(currentV,dv);
+		currentX = addVecs(x,multiplyVecs(dt,currentV));
+
+		for(var i = 0; i < this.numParticles; i++){
+	        if(!this.particles[i].fixed[0]){
+	            this.particles[i].velocity[0] = currentV[2*i];
+	            this.particles[i].pos[0] = currentX[2*i];
+        	}
+        	if(!this.particles[i].fixed[1]){
+	            this.particles[i].velocity[1] = currentV[2*i+1];
+	            this.particles[i].pos[1] = currentX[2*i+1];
+        	}
+		}
+	}
+
 
 	//Draws a white blank canvas, out lines, axis lines, then calls draw for each particle and edge.
 	this.draw = function(){

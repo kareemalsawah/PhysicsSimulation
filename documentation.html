@@ -65,7 +65,14 @@
                                     <li><a href="#line3_5">Double Pendulum</a></li>
                                     <li><a href="#line3_6">Damped Oscillations</a></li>
                                     <li><a href="#line3_7">Forced Oscillations</a></li>
+                                    <li><a href="#line3_7">Transverse Waves</a></li>
                                 </ul>
+                                </li>
+                                <li><a href="#line6">Custom Examples</a>
+                                  <ul class="nav">
+                                    <li><a href="#line6_1">1D Waves</a></li>
+                                    <li><a href="#line6_2">2D Waves</a></li>
+                                  </ul>
                                 </li>
                             <li><a href="#line4">Technical details</a>
                             <ul class="nav">
@@ -75,8 +82,9 @@
                                     <li><a href="#line4_1_2">Explicit Euler</a></li>
                                     <li><a href="#line4_1_3">Symplectic Euler</a></li>
                                     <li><a href="#line4_1_4">Implicit Euler</a></li>
-                                    <li><a href="#line4_1_5">Implicit Explicit</a></li>
-                                    <li><a href="#line4_1_6">Implicit Symplectic</a></li>
+                                    <li><a href="#line4_1_5">Linearized Implicit Euler</a></li>
+                                    <li><a href="#line4_1_6">Implicit Explicit</a></li>
+                                    <li><a href="#line4_1_7">Implicit Symplectic</a></li>
                                     </ul>
                                 </li>
                                     <li><a href="#line4_2">Forces</a>
@@ -178,6 +186,11 @@
                                 <li>Color is also used to draw the spring/edge and doesn't affect the simulation</li>
                                 <li>After you set all the above, click place. Then, click on the first particle followed by the second particle you want to connect the spring between. Note that this means that you must place the 2 particles before you place the spring between them</li>
                             </ul>
+
+                            <div class="intro2 clearfix">
+                                <p><i class="fa fa-exclamation-triangle"></i> Warning: You need to be careful with the initial positions of your 2 particles that are connected with a spring. If the initial displacement between them exceeds the resting length, the particles will go through each other because springs are simulated with ideal behaviour. Try it and see what happens. Place two particles with a distance of 4 between them and connected them with a spring with the resting length = 3.
+                                </p>
+                            </div>
                         </p>
                         <hr>
 
@@ -331,7 +344,22 @@
 
                     </section>
 
-                    <section id="line4" class="section" style="margin-top:-300px;">
+                    <section id="line6" class="section" style="margin-top:-300px;">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">Custom Examples<a href="#top">#back to top</a><hr></h2>
+                            </div>
+                        </div>
+                        <h4 id="line6_1">1D waves</h4>
+                        <hr>
+                        1D Waves
+                        <h4 id="line6_2">2D waves</h4>
+                        <hr>
+                        2D waves
+                    </section>
+
+                    <section id="line4" class="section" style="margin-top:-200px;">
 
                         <div class="row">
                             <div class="col-md-12 left-align">
@@ -395,12 +423,20 @@
                         Detailed derivations are excluded but can be found easily either in the <a href="#line5">references</a> or online.
                         <hr>
 
-                        <h4 id="line4_1_5">Implicit Explicit Combination</h4>
+
+                        <h4 id="line4_1_5">Linearized Implicit Euler</h4>
+                          This method is basically implicit euler with one difference.
+                          Newton's method is applied only once not until the error is below a certain threshold as in Implicit Euler.
+                          This method is very good especially for slower devices as it has the stability of Implicit Euler without being computationally expensive.
+                        <hr>
+
+
+                        <h4 id="line4_1_6">Implicit Explicit Combination</h4>
                         Thiis method has a very simple concept. Since explicit euler generally increases the total energy and implicit euler generally reduces it, the simulator will calculate the energy at the beginning of the simulation; at each time step the simulator will use either explicit or implicit euler depending on the system's current energy. If it is higher than the initial energy, the simulator will use implicit euler and vice versa. This means that we need to implement functions to calculate the net energy in a system = potential energy + kinetic energy. As well as functions that reduce the calculate system's initial energy to account for damping.
 
                         <hr>
 
-                        <h4 id="line4_1_6">Implicit Symplectic Combination</h4>
+                        <h4 id="line4_1_7">Implicit Symplectic Combination</h4>
                         Similar to the previous method, this method combines Implicit and Symplectic Euler in the same way. During testing, this method was the most reliable and stable of all the methods, so it is recommended to use this method.
                         </div>
 
