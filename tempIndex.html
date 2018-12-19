@@ -14,8 +14,6 @@
 <li><a class="active" href="#">Simulate</a></li>
 <li><a href="examples.html">Examples</a></li>
 <li><a href="documentation.html">Documentation</a></li>
-<li style="float:right;"><a id="boardA" href="#" onclick="boardSwitch();">Board Mode</a></li>
-<li style="float:right;"><a href="#" class="btn btn-primary" id="undoBtn" onclick="undo();">Undo</a></li>
 </ul>
 
 
@@ -660,12 +658,7 @@ function navbarResponsive() {
     <div id="toAdd"></div>
   </div>
 </div>
-
-<div id="boardMode" class="boardBox">
-<canvas id="boardCanvas" style="width:100vw;height:98vh;"></canvas>
 </div>
-</div>
-
 <h1 id="orientation-error">Please use this application only in landscape mode (change the settings in the phone to allow for screen rotation and use the application in landscape then reload the page)</h1>
 </body>
 
@@ -674,6 +667,8 @@ function resizeCanvasToDisplaySize(canv) {
    // look up the size the canv is being displayed
    var width = canv.clientWidth;
    var height = canv.clientHeight;
+	 console.log(width);
+	 console.log(height);
    // If it's resolution does not match change it
    if (canv.width !== width || canv.height !== height) {
      canv.width = width;
@@ -686,11 +681,8 @@ function resizeCanvasToDisplaySize(canv) {
 
 resizeCanvasToDisplaySize(document.getElementById("canvas"));
 resizeCanvasToDisplaySize(document.getElementById("graphCanvas"));
-resizeCanvasToDisplaySize(document.getElementById("boardCanvas"));
 document.getElementById("GraphDiv").style = "display:none;";
-document.getElementById("boardMode").style = "display:none;";
 </script>
-<script src="js/board.js"></script>
 <script src="js/math.min.js"></script>
 <script src="js/dom.js"></script>
 <script src="js/helper.js"></script>
