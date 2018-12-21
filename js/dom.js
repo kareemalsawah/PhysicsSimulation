@@ -256,16 +256,107 @@ function showSettings(type){
 		document.getElementById("simpleRopeSettings").style.display = "none";
 		document.getElementById("supportSettings").style.display = "none";
 	if(type=="particle"){
+		showDeleteSettings("none");
+		document.getElementById("deleteDropdown").style.display = "none";
 		document.getElementById("particleSettings").style.display = "block";
 	}else if(type=="spring"){
+		showDeleteSettings("none");
+		document.getElementById("deleteDropdown").style.display = "none";
 		document.getElementById("springSettings").style.display = "block";
 	}else if(type=="rope"){
+		showDeleteSettings("none");
+		document.getElementById("deleteDropdown").style.display = "none";
 		document.getElementById("ropeSettings").style.display = "block";
 	}else if(type=="support"){
+		showDeleteSettings("none");
+		document.getElementById("deleteDropdown").style.display = "none";
 		document.getElementById("supportSettings").style.display = "block";
 	}else if(type=="simpleRope"){
+		showDeleteSettings("none");
+		document.getElementById("deleteDropdown").style.display = "none";
 		document.getElementById("simpleRopeSettings").style.display = "block";
 	}
+}
+
+function showDeleteSettings(type){
+		document.getElementById("particleDeleteSettings").style.display = "none";
+		document.getElementById("forceDeleteSettings").style.display = "none";
+	if(type=="particle"){
+		showSettings("none");
+		document.getElementById("placeDropdown").style.display = "none";
+		document.getElementById("particleDeleteSettings").style.display = "block";
+	}else if(type=="force"){
+		showSettings("none");
+		document.getElementById("placeDropdown").style.display = "none";
+		document.getElementById("forceDeleteSettings").style.display = "block";
+	}
+}
+
+function deleteParticle(){
+	var particleIndex = parseInt(document.getElementById("deleteParticleNumber").value);
+	if(particleIndex>scene.numParticles||particleIndex<1){
+		alert("That particle doesn't exist");
+	}else{
+		var forceNum = scene.forceTypes.length;
+		for(var i = 2; i < forceNum; i++){
+			if(scene.forceTypes[i].type == "SpringForce"){
+				var edgeToRemoveIndex = scene.forceTypes[i].edgeIndex;
+				var forceEdge = scene.edges[edgeToRemoveIndex];
+				if(forceEdge.p1 == particleIndex-1 || forceEdge.p2 == particleIndex-1){
+					scene.edges.splice(edgeToRemoveIndex,1);
+					scene.numEdges--;
+					scene.forceTypes.splice(i,1);
+					for(var j = 0; j < scene.forceTypes.length; j++){
+						if(scene.forceTypes[j].type == "SpringForce"){
+							if(scene.forceTypes[j].edgeIndex>edgeToRemoveIndex){
+								scene.forceTypes[j].edgeIndex--;
+							}
+						}
+					}
+					i--;
+					forceNum--;
+				}
+			}
+		}
+		scene.numParticles--;
+		scene.particles.splice(particleIndex-1,1);
+	}
+}
+
+function deleteForce(){
+	var force1 = parseInt(document.getElementById("deleteForce1").value);
+	var force2 = parseInt(document.getElementById("deleteForce2").value);
+	var deletedAForce = false;
+	var forceNum = scene.forceTypes.length;
+	for(var i = 2; i < forceNum; i++){
+		if(scene.forceTypes[i].type == "SpringForce"){
+			var edgeToRemoveIndex = scene.forceTypes[i].edgeIndex;
+			var edgeToRemove = scene.edges[edgeToRemoveIndex];
+			if(edgeToRemove.p1==force1-1&&edgeToRemove.p2==force2-1){
+				deletedAForce = true;
+				scene.edges.splice(edgeToRemoveIndex,1);
+				scene.numEdges--;
+				scene.forceTypes.splice(i,1);
+				for(var j = 0; j < scene.forceTypes.length; j++){
+					if(scene.forceTypes[j].type == "SpringForce"){
+						if(scene.forceTypes[j].edgeIndex>edgeToRemoveIndex){
+							scene.forceTypes[j].edgeIndex--;
+						}
+					}
+				}
+				i--;
+				forceNum--;
+			}
+		}
+	}
+	if(!deletedAForce){
+		alert("No Force found between these two particles");
+	}
+}
+
+function cancelDelete(){
+	showDeleteSettings("none");
+	document.getElementById("placeDropdown").style.display = "block";
 }
 
 function instantPlace(type){
@@ -489,6 +580,7 @@ function cancelPlacement(){
 	springElement1 = -1;
 	springElement2 = -1;
 	ropeElement = -1;
+	document.getElementById("deleteDropdown").style.display = "block";
 }
 
 function rangeShifters(min,max,minDOM,maxDOM,sliderDOM){

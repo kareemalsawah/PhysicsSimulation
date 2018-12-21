@@ -73,9 +73,20 @@ canvasBoard.addEventListener("mousemove",function(evt){
 
 });
 
+
+canvasBoard.addEventListener("touchmove",function(evt){
+  var rect = canvasBoard.getBoundingClientRect();
+  var mouseX = evt.clientX - rect.left;
+  var mouseY = evt.clientY - rect.top;
+  if(inCanvasBoard&&drawing&&boardOn){
+    var newPoint = [mouseX,mouseY];
+    pointsBoard[pointsBoard.length-1].push(newPoint);
+  }
+
+});
+
 canvasBoard.addEventListener("mouseover",function(){
   inCanvasBoard = true;
-  console.log("over");
 });
 
 canvasBoard.addEventListener("mouseout",function(){
@@ -100,6 +111,27 @@ document.addEventListener("mouseup",function(){
     pointsBoard.push([]);
   }
 });
+
+
+document.addEventListener("touchstart",function(evt){
+  drawing = true;
+  if(inCanvasBoard&&boardOn){
+    var rect = canvasBoard.getBoundingClientRect();
+    var mouseX = evt.clientX - rect.left;
+    var mouseY = evt.clientY - rect.top;
+    var newPoint = [mouseX,mouseY];
+    pointsBoard[pointsBoard.length-1].push(newPoint);
+  }
+
+});
+
+document.addEventListener("touchend",function(){
+  drawing = false;
+  if(pointsBoard[pointsBoard.length-1].length>0){
+    pointsBoard.push([]);
+  }
+});
+
 
 var boardOn = false;
 function boardSwitch(){

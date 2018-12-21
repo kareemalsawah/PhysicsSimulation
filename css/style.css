@@ -115,6 +115,16 @@ li a:hover {
     cursor: pointer;
 }
 
+.dropbtnDelete {
+    background-color: #DD0000;
+    color: white;
+    padding: 16px;
+    font-size: 2vw;
+    border: none;
+    cursor: pointer;
+		margin-top:5vh;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;

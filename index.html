@@ -51,7 +51,7 @@ function navbarResponsive() {
 <div id="placeObjectsDiv">
 	<h2 id="currentCommand">Current Command:</h2>
 	<hr>
-	<div class="dropdown">
+	<div class="dropdown" id="placeDropdown">
 	  	<button class="dropbtn">Select Item to Place</button>
 	  	<div class="dropdown-content">
 		    <a onclick='showSettings("particle");'>Particle</a>
@@ -59,6 +59,14 @@ function navbarResponsive() {
 		    <a onclick='showSettings("support");'>Support</a>
 		    <a onclick='showSettings("simpleRope");'>Simple Rope</a>
 		    <a onclick='showSettings("rope");'>Complex Rope</a>
+	  	</div>
+	</div>
+
+	<div class="dropdown" id="deleteDropdown">
+	  	<button class="dropbtnDelete">Delete An Item</button>
+	  	<div class="dropdown-content">
+		    <a onclick='showDeleteSettings("particle");'>Particle</a>
+		    <a onclick='showDeleteSettings("force");'>Force</a>
 	  	</div>
 	</div>
 
@@ -385,6 +393,47 @@ function navbarResponsive() {
 		<a class="btn btn-primary" onclick='place("support");' style="margin-top:10px;margin-bottom:5px;">Place</a>
 		<br>
 		<a class="btn btn-danger" onclick='cancelPlacement();'>Cancel</a>
+	</div>
+
+
+
+
+
+
+	<div id="particleDeleteSettings" style="display:none;overflow-y: scroll;height:350px;">
+		<h2 class="nav2Titles">Delete Particle</h2>
+		<div class="row">
+				<div class="col-25">
+					<label>Particle Number:</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="deleteParticleNumber" value="">
+				</div>
+		</div>
+		<a class="btn btn-danger" onclick='deleteParticle();'>Delete</a>
+		<a class="btn btn-danger" onclick='cancelDelete();'>Cancel</a>
+	</div>
+
+	<div id="forceDeleteSettings" style="display:none;overflow-y: scroll;height:350px;">
+		<h2 class="nav2Titles">Delete Force</h2>
+		<div class="row">
+				<div class="col-25">
+					<label>First Particle:</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="deleteForce1" value="">
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-25">
+					<label>Second Particle:</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="deleteForce2" value="">
+				</div>
+		</div>
+		<a class="btn btn-danger" onclick='deleteForce();'>Delete</a>
+		<a class="btn btn-danger" onclick='cancelDelete();'>Cancel</a>
 	</div>
 
 </div>
