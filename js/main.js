@@ -49,6 +49,10 @@ It handles the time displayed in the timer/stopwatch
 It handles adding particles, springs, supports, simple ropes, and complex ropes to the scene using the DOM
 */
 function loop(){
+	nextFrame();
+}
+
+function nextFrame(){
 	if(placing=="0"){
 		if(!paused){
 			if(scene.particles.length>0){
@@ -155,7 +159,6 @@ function loop(){
 		});
 	}
 }
-
 function touchClick(mouseX,mouseY){
 	var realCoord = mainCanvas.canToRealCoord(mouseX,mouseY);
 	if(placing=="particle"){

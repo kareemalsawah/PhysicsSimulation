@@ -18,15 +18,15 @@
 <li style="float:right;"><a href="#" class="btn btn-primary" id="undoBtn" onclick="undo();">Undo</a></li>
 </ul>
 
-
+<div id="bodyWrapper">
 <div class="sideBySide" id="canvasDiv">
 <canvas id="canvas"></canvas>
 </div>
 <div class="sideBySide" id="placementOptions">
 <div id="controls">
 	<a class="sideBySide buttonControls" id="pause" onclick='control("pause");'>&#9632;</a>
-	<a class="sideBySide buttonControls" id="play" onclick='control("play");'>&#9658;</a>
-	<a class="sideBySide buttonControls" id="nextFrame" onclick='control("nextFrame");'>&#8827;</a>
+	<a class="sideBySide buttonControls" id="play" onclick='control("play");'>&#10148;</a>
+	<a class="sideBySide buttonControls" id="nextFrame" onclick='control("nextFrame");'>&#10148;&#124;</a>
 </div>
 <br>
 <ul class="topnav" id="navBar2">
@@ -48,8 +48,8 @@ function navbarResponsive() {
     }
 }
 </script>
-<div id="placeObjectsDiv">
-	<h2 id="currentCommand">Current Command:</h2>
+<div class="PlacementDiv" id="placeObjectsDiv">
+	<h2 id="currentCommand">Current Command: Simulation Paused</h2>
 	<hr>
 	<div class="dropdown" id="placeDropdown">
 	  	<button class="dropbtn">Select Item to Place</button>
@@ -400,7 +400,7 @@ function navbarResponsive() {
 
 
 
-	<div id="particleDeleteSettings" style="display:none;overflow-y: scroll;height:350px;">
+	<div class="PlacementDiv" id="particleDeleteSettings" style="display:none;overflow-y: scroll;height:350px;">
 		<h2 class="nav2Titles">Delete Particle</h2>
 		<div class="row">
 				<div class="col-25">
@@ -711,7 +711,8 @@ function navbarResponsive() {
 </div>
 
 <div id="boardMode" class="boardBox">
-<canvas id="boardCanvas" style="width:100vw;height:98vh;"></canvas>
+<canvas id="boardCanvas"></canvas>
+</div>
 </div>
 </div>
 

@@ -390,13 +390,17 @@ function saveSettings(){
 function control(type){
 	if(type=="pause"){
 		paused = true;
+		document.getElementById("currentCommand").innerHTML = "Current Command: Simulation Paused";
 	}else if(type=="play"){
 		paused = false;
 		document.getElementById("currentCommand").innerHTML = "Current Command: Running Simulation";
 	}else if(type=="nextFrame"){
+		document.getElementById("currentCommand").innerHTML = "Current Command: Simulation Paused";
+		paused = false;
+		nextFrame();
 		paused = true;
-		scene.stepScene(dtGeneral);
-		scene.draw();
+		/*scene.stepScene(dtGeneral);
+		scene.draw();*/
 	}
 }
 

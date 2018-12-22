@@ -180,6 +180,49 @@ function simpleRope(pos1,pos2,v1,v2,fixedEndpoints,mass,pRadius,pColor,sColor,k,
 	}
 }
 
+
+function simpleRopeTension(pos1,pos2,v1,v2,fixedEndpoints,mass,pRadius,pColor,sColor,k,pNum,kBeta,internalFixed,dl0){
+	var particleMass = mass;
+	var kBeta = kBeta;
+	var p1 = new ball(pos1[0],pos1[1],v1[0],v1[1],fixedEndpoints[0],particleMass,pRadius,pColor);
+	var p2 = new ball(pos2[0],pos2[1],v2[0],v2[1],fixedEndpoints[1],particleMass,pRadius,pColor);
+	var sColor = sColor;
+	var k = k;
+	var startParticles = scene.numParticles;
+	var startEdges = scene.edges.length;
+	scene.particles.push(p1);
+	var len = dist(pos1[0],pos1[1],pos2[0],pos2[1]);
+	var smallWidth = len/pNum;
+	var edges = [];
+	var springs = [];
+	var wHat = [0,0];
+	wHat[0] = (pos2[0]-pos1[0])/pNum;
+	wHat[1] = (pos2[1]-pos1[1])/pNum;
+	var pNum = pNum;
+	var pRadius = pRadius;
+	var pColor = pColor;
+	var currentPos = pos1;
+	for(var i = 0; i < pNum-1; i++){
+		currentPos[0] += wHat[0];
+		currentPos[1] += wHat[1];
+
+		scene.particles.push(new ball(currentPos[0],currentPos[1],0,0,internalFixed,particleMass,pRadius,pColor));
+		edges.push(new edge(startParticles+i+1,startParticles+i,pRadius,sColor));
+	}
+	scene.particles.push(p2);
+	edges.push(new edge(scene.particles.length-1,scene.particles.length-2,pRadius,sColor));
+	scene.numParticles = scene.particles.length;
+
+	for(var i = 0; i < edges.length; i++){
+		scene.edges.push(edges[i]);
+	}
+	scene.numEdges = scene.edges.length;
+	for(var i = 0; i < edges.length; i++){
+		var l0 = dist(scene.particles[edges[i].p1].pos[0],scene.particles[edges[i].p1].pos[1],scene.particles[edges[i].p2].pos[0],scene.particles[edges[i].p2].pos[1]);
+		scene.forceTypes.push(new SpringForce(startEdges+i,k,l0-dl0,kBeta));
+	}
+}
+
 /*
 graphingCanvas handles most features of the graphing. It has transformations from real coords to graphCanvas coords.
 graphCanvas coords can be modified in order to scale or shift the graph. The object also draw outer boundaries

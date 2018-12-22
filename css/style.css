@@ -408,3 +408,24 @@ label {
 	font-size:1vw;
 	margin-right:1vw;
 }
+#boardCanvas{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#bodyWrapper{
+
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.proofVideo{
+	height: 80%;
+	width: 30%;
+	position: absolute;
+	right: 5%;
+	top: 20%;
+}
